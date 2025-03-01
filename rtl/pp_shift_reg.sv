@@ -10,6 +10,7 @@ module pp_shift_reg #(
 ) (
     input  logic clk,
     input  logic rst_n,
+    input  logic load,
     input  logic [(WIDTH/2)-1:0] din,
     output logic [(WIDTH/2)-1:0] dout
 );
@@ -19,7 +20,8 @@ module pp_shift_reg #(
     if (!rst_n) begin
       pp <= 'h0;
     end else begin
-      pp <= {4'(din[(WIDTH/2)-1]), din, pp[WIDTH/2-1:4]};
+      if (load) pp <= 'h0;
+      else pp <= {{4{din[(WIDTH/2)-1]}}, din, pp[WIDTH/2-1:4]};
     end
   end
   assign dout = pp[WIDTH-1:WIDTH/2];

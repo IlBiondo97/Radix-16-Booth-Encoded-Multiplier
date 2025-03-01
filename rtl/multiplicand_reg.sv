@@ -11,6 +11,7 @@
  ) (
      input  logic clk,
      input  logic rst_n,
+     input logic load,
      input  logic [WIDTH-1:0] din,
      output logic [WIDTH-1:0] dout
  );
@@ -20,7 +21,10 @@
      if (!rst_n) begin
        multiplicand <= 'h0;
      end else begin
-       multiplicand <= din;
+         if (load) begin
+            multiplicand <= din;
+         end
+       multiplicand <= multiplicand;
      end
    end
    assign dout = multiplicand;

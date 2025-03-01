@@ -11,7 +11,7 @@
  )(
     input logic clk,
     input logic rst_n,
-    input logic shift,
+    input logic load,
     input logic [WIDTH-1:0] din,
     output logic [3:0] dout,
     output logic last_bit
@@ -25,12 +25,12 @@
             multiplier <= 'h0;
             last_bit_reg <= 1'b0;
         end else begin
-            if(shift) begin
-                multiplier <= {4'b0, multiplier[WIDTH-1:4]};
-                last_bit_reg <= multiplier[WIDTH/2-1];
-            end else begin
+            if(load) begin
                 multiplier <= din;
                 last_bit_reg <= 1'b0;
+            end else begin
+                multiplier <= {4'b0, multiplier[WIDTH-1:4]};
+                last_bit_reg <= multiplier[3];
             end
         end
     end
