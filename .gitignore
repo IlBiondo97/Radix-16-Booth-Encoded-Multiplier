@@ -1,0 +1,4 @@
+#Do not sync with github
+*.settings
+*.project
+*.library_mapping.xml
