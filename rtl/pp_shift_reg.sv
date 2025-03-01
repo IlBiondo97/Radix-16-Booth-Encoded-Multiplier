@@ -1,16 +1,16 @@
 /**
- * @file shift_reg.sv
- * @brief Shift register with parameterized width.
+ * @file pp_shift_reg.sv
+ * @brief Shift register with parameterized width for partial products.
  *
  * @author Ivan Biundo
  * @date 01/03/2025
  */
 module pp_shift_reg #(
-    parameter WIDTH = 8
+    parameter int WIDTH = 8
 ) (
-    input logic clk,
-    input logic rst_n,
-    input logic [(WIDTH/2)-1:0] din,
+    input  logic clk,
+    input  logic rst_n,
+    input  logic [(WIDTH/2)-1:0] din,
     output logic [(WIDTH/2)-1:0] dout
 );
   reg [WIDTH-1:0] pp;
@@ -19,7 +19,7 @@ module pp_shift_reg #(
     if (!rst_n) begin
       pp <= 'h0;
     end else begin
-      pp <= {4'(din[(WIDTH/2)-1]), din, pp[WIDTH/2-1:WIDTH/2-4]};
+      pp <= {4'(din[(WIDTH/2)-1]), din, pp[WIDTH/2-1:4]};
     end
   end
   assign dout = pp[WIDTH-1:WIDTH/2];
