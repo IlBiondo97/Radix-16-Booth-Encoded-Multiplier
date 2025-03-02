@@ -6,9 +6,9 @@
  * @date 01/03/2025
  */
 
- module multiplier_shift_reg #(
-    parameter int WIDTH = 8
- )(
+import mul_pkg::*;
+
+ module multiplier_shift_reg (
     input logic clk,
     input logic rst_n,
     input logic load,

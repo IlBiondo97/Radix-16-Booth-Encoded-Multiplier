@@ -6,6 +6,8 @@
  * @date 01/03/2025
  */
 
+ import mul_pkg::*;
+
  module multiplicand_reg #(
      parameter int WIDTH = 8
  ) (
