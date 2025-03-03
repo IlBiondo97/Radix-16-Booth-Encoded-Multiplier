@@ -3,7 +3,7 @@
  * @brief Full Adder.
  *
  * @author Ivan Biundo
- * @date 01/03/2025
+ * @date 02/03/2025
  */
 
  module FA (

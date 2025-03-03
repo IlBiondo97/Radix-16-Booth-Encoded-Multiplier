@@ -3,7 +3,7 @@
  * @brief Generate partial products based on the Booth Encoding.
  *
  * @author Ivan Biundo
- * @date 01/03/2025
+ * @date 02/03/2025
  */
 
 import mul_pkg::*;
