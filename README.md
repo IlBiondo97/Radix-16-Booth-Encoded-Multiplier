@@ -1,7 +1,7 @@
 # Radix-16 Multiplier with Booth Encoding Based on CSA
 
 ## Project Description
-This project implements a high-speed multiplier based on the Booth algorithm with Radix-16 encoding and utilizes a Carry-Save Adder (CSA) structure to optimize the reduction of partial sums. The design is intended to improve performance compared to traditional multipliers by reducing the number of required operations. This multiplier can be used in Floating Point Units (FPU) that comply with the IEEE-754 Double Precision standard.
+This project implements a high-speed multiplier based on the Booth algorithm with Radix-16 encoding, reducing the number of partial sums, and utilizes a Carry-Save Adder (CSA) structure to optimize the latency. The design is intended to improve performance compared to traditional multipliers by reducing the number of required operations. This multiplier can be used in Floating Point Units (FPU) that comply with the IEEE-754 Double Precision standard.
 
 ## Repository Structure
 The repository is organized as follows:
@@ -9,7 +9,7 @@ The repository is organized as follows:
 ```
 Radix-16-Booth-Encoded-Multiplier/
 |── common/
-    |──FA.sv                     #Full-adder
+|   |──FA.sv                     #Full-adder
 │
 │── package/                     # Packages and definitions used in the project
 │   │── mul_pkg.sv               # Definitions for the Multiplicator module
