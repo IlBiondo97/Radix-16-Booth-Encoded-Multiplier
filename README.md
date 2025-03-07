@@ -9,14 +9,15 @@ The repository is organized as follows:
 ```
 Radix-16-Booth-Encoded-Multiplier/
 |── common/
-|   |──FA.sv                     #Full-adder
-│
+|   |── FA.sv                    # Full-adder
+│   │── csa.sv                   # Carry-Save Adder module
+│   |── rounder.sv               # Module for the Rounding to nearest even
+|
 │── package/                     # Packages and definitions used in the project
 │   │── mul_pkg.sv               # Definitions for the Multiplicator module
 |      
 │── rtl/                         # SystemVerilog source code
 │   │── booth_encoder.sv         # Booth Radix-16 encoding module
-│   │── csa.sv                   # Carry-Save Adder module
 │   │── multiplicand_reg.sv      # Register for the Multiplicand operand
 |   |── multiplier_shift_reg.sv  # Shift register for the Multiplier operand
 |   |── pp_carry_shift_reg.sv    # Shift register for partial products and carries

@@ -6,7 +6,9 @@
  * @date 03/03/2025
  */
 
-module csa (
+module csa #(
+    parameter int WIDTH = 8
+)(
     input  logic [WIDTH+2:0] multiplicand_in,
     input  logic [WIDTH+2:0] pp_in,
     input  logic [WIDTH+2:0] carry_in,
