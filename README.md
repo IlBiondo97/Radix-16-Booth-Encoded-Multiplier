@@ -25,6 +25,7 @@ Radix-16-Booth-Encoded-Multiplier/
 │
 │── .gitignore                   # File to exclude specific files from versioning
 │── LICENSE                      # Project license (MIT)
+|── mul_datapath.sv              # Multiplier Datapath
 │── README.md                    # This file
 ```
 
