@@ -8,9 +8,7 @@
 
  import mul_pkg::*;
 
- module multiplicand_reg #(
-     parameter int WIDTH = 8
- ) (
+ module multiplicand_reg (
      input  logic clk,
      input  logic rst_n,
      input logic load,
