@@ -9,8 +9,9 @@ The repository is organized as follows:
 ```
 Radix-16-Booth-Encoded-Multiplier/
 |── common/
-|   |── FA.sv                    # Full-adder
+|   |── counter.sv               # Counter module to count the clock cycles required for multiplication 
 │   │── csa.sv                   # Carry-Save Adder module
+|   |── FA.sv                    # Full-adder
 │   |── rounder.sv               # Module for the Rounding to nearest even
 |
 │── package/                     # Packages and definitions used in the project
