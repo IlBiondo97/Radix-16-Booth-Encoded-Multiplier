@@ -10,6 +10,9 @@ localparam int FpuMultiplier = 1;  // Set to 1 if the multiplier is used in a FP
 
 localparam int WIDTH = 52;  // Width of the operands, change to adapt to your needs
 
+localparam int MULCYCLES = $ceil(WIDTH/4);  // Number of cycles needed to complete the multiplication
+localparam int COUNTERWIDTH = $clog2(MULCYCLES);  // Dimension of the counter
+
 package mul_pkg;
   typedef enum logic [3:0] {
     PP_0,

@@ -80,7 +80,7 @@ module mul_datapath (
 
   assign sum_out = carry_shift_reg_q + pp_shift_reg_q;
 
-  // instantiantion of rounder module or not, depending on the FpuMultiplier parameter
+  // Instantiantion of rounder module or not, depending on the FpuMultiplier parameter
   generate
     if (FpuMultiplier) begin : g_rounded_output_for_fpu
       rounder #(
@@ -118,7 +118,9 @@ module mul_datapath (
     end
   endgenerate
 
-counter counter_instance (
+counter # (
+    .WIDTH(COUNTERWIDTH)
+) counter_instance(
     .clk(clk),
     .rst_n(rst_n),
     .start(start),
