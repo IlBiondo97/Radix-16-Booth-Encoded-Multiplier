@@ -23,7 +23,8 @@ module mul_datapath (
   logic [WIDTH<<1:0] sum_out;
   logic [WIDTH+2:0] pp_gen_q, pp_shift_reg_d, carry_shift_reg_d;
   logic [WIDTH-1:0]
-      multiplicand_reg_out_q, multiplier_shift_reg_out_q, pp_shift_reg_q, carry_shift_reg_q;
+      multiplicand_reg_out_q, multiplier_shift_reg_out_q, pp_shift_reg_q, carry_shift_reg_q,
+      product_rounded_d;
   logic last_bit_q, neg_sign_int;
   booth_sel_t pp_sel_int;
 
@@ -79,18 +80,48 @@ module mul_datapath (
 
   assign sum_out = carry_shift_reg_q + pp_shift_reg_q;
 
+  // instantiantion of rounder module or not, depending on the FpuMultiplier parameter
   generate
     if (FpuMultiplier) begin : g_rounded_output_for_fpu
       rounder #(
           .WIDTH(WIDTH)
       ) rounder_instance (
           .in (sum_out[(WIDTH<<1)-1:0]),
-          .out(product_rounded_o)
+          .out(product_rounded_d)
       );
-      assign product_o = 'h0;
+
+      // Output register
+      logic [WIDTH-1:0] product_rounded_q;
+
+      always_ff @(posedge clk or negedge rst_n) begin
+          if (!rst_n) begin
+              product_rounded_q <= 'h0;
+            end else begin
+                product_rounded_q <= product_rounded_d;
+            end
+        end
+        assign product_rounded_o = product_rounded_q;
+        assign product_o = 'h0;
     end else begin : g_normal_output
-      assign product_o = sum_out[(WIDTH<<1)-1:0];
+
+        // Output register
+        logic [WIDTH<<1-1:0] product_q;
+        always_ff @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
+                product_q <= 'h0;
+            end else begin
+                product_q <= sum_out[(WIDTH<<1)-1:0];
+            end
+        end
+      assign product_o = product_q;
       assign product_rounded_o = 'h0;
     end
   endgenerate
+
+counter counter_instance (
+    .clk(clk),
+    .rst_n(rst_n),
+    .start(start),
+    .done(done)
+);
 endmodule
