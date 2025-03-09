@@ -24,6 +24,9 @@ Radix-16-Booth-Encoded-Multiplier/
 |   |── pp_carry_shift_reg.sv    # Shift register for partial products and carries
 |   |── pp_gen.sv                # Partial products generator module
 │
+│── tb/                          # SystemVerilog testbench code
+│   │── mul_tb.sv                # Testbench for the Multiplier
+|
 │── .gitignore                   # File to exclude specific files from versioning
 │── LICENSE                      # Project license (MIT)
 |── mul_datapath.sv              # Multiplier Datapath
@@ -36,7 +39,7 @@ Radix-16-Booth-Encoded-Multiplier/
    git clone https://github.com/IlBiondo97/Radix-16-Booth-Encoded-Multiplier.git
    ```
 2. Open the project in a SystemVerilog-compatible development environment.
-3. Compile and simulate the project using the provided testbenches (to be implemented).
+3. Compile and simulate the project using the provided testbench.
 4. Analyze the simulation results to verify the correct operation of the multiplier.
 
 ## Contributions

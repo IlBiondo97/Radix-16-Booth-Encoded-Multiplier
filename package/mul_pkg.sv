@@ -6,7 +6,7 @@
  * @date 01/03/2025
  */
 
-localparam int FpuMultiplier = 1;  // Set to 1 if the multiplier is used in a FPU
+localparam int FpuMultiplier = 0;  // Set to 1 if the multiplier is used in a FPU
 
 localparam int WIDTH = 52;  // Width of the operands, change to adapt to your needs
 
