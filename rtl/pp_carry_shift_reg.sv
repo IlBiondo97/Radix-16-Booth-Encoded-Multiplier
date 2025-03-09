@@ -13,8 +13,8 @@ module pp_carry_shift_reg (
     input logic load,
     input logic [WIDTH+2:0] pp_din,
     input logic [WIDTH+2:0] carry_din,
-    output logic [WIDTH-1:0] pp_dout,
-    output logic [WIDTH-1:0] carry_dout
+    output logic [(WIDTH<<1)-1:0] pp_dout,
+    output logic [(WIDTH<<1)-1:0] carry_dout
 );
   reg [(WIDTH<<1)-1:0] pp;  //TODO: Unify pp and multiplier registers to optimize area
   reg [(WIDTH<<1)-1:0] carry;
@@ -28,11 +28,11 @@ module pp_carry_shift_reg (
         pp <= 'h0;
         carry <= 'h0;
       end else begin
-        pp <= {pp_din[WIDTH-1], pp_din, pp[(WIDTH<<1)/2-1:4]};
-        carry <= {carry_din, 1'b0, carry[(WIDTH<<1)/2-1:4]};
+        pp <= {pp_din[WIDTH-1], pp_din, pp[WIDTH-1:4]};
+        carry <= {carry_din, 1'b0, carry[WIDTH-1:4]};
       end
     end
   end
-  assign pp_dout = pp[(WIDTH<<1)-1:(WIDTH<<1)/2];
-  assign carry_dout = carry[(WIDTH<<1)-1:(WIDTH<<1)/2];
+  assign pp_dout = pp;
+  assign carry_dout = carry;
 endmodule

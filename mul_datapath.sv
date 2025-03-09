@@ -21,10 +21,10 @@ module mul_datapath (
 
   // Internal signals
   logic [WIDTH<<1:0] sum_out;
+  logic [(WIDTH<<1)-1:0] pp_shift_reg_q, carry_shift_reg_q;
   logic [WIDTH+2:0] pp_gen_q, pp_shift_reg_d, carry_shift_reg_d;
   logic [WIDTH-1:0]
-      multiplicand_reg_out_q, multiplier_shift_reg_out_q, pp_shift_reg_q, carry_shift_reg_q,
-      product_rounded_d;
+      multiplicand_reg_out_q, multiplier_shift_reg_out_q, product_rounded_d;
   logic last_bit_q, neg_sign_int;
   booth_sel_t pp_sel_int;
 
@@ -65,15 +65,15 @@ module mul_datapath (
       .pp_din(pp_shift_reg_d),
       .carry_din(carry_shift_reg_d),
       .pp_dout(pp_shift_reg_q),
-      .carry_dout(carry_shift_reg_q)
+      .carry_dout(carry_shift_reg_q),
   );
 
   csa #(
       .WIDTH(WIDTH)
   ) csa_instance (
       .multiplicand_in(pp_gen_q),
-      .pp_in({{3{pp_shift_reg_q[WIDTH-1]}}, pp_shift_reg_q}),
-      .carry_in({3'b0, carry_shift_reg_q}),
+      .pp_in({{3{pp_shift_reg_q[WIDTH-1]}}, pp_shift_reg_q[(WIDTH<<1)-1:WIDTH]}),
+      .carry_in({3'b0, carry_shift_reg_q[(WIDTH<<1)-1:WIDTH]}),
       .sum_out(pp_shift_reg_d),
       .carry_out(carry_shift_reg_d)
   );
