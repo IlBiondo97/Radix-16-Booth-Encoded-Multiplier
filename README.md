@@ -4,7 +4,7 @@
 This project implements a high-speed multiplier based on the Booth algorithm with Radix-16 encoding, reducing the number of partial sums, and utilizes a Carry-Save Adder (CSA) structure to optimize the latency. The design is intended to improve performance compared to traditional multipliers by reducing the number of required operations. This multiplier can be used in Floating Point Units (FPU) that comply with the IEEE-754 Double Precision standard.
 
 ## Schematic
-![Multiplier Schematic](/docs/schematic.svg)
+![Schematic](/docs/schematic.svg)
 
 ## Repository Structure
 The repository is organized as follows:
