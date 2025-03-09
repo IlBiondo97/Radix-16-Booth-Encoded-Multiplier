@@ -18,7 +18,7 @@ Radix-16-Booth-Encoded-Multiplier/
 │   |── rounder.sv               # Module for the Rounding to nearest even
 |
 |── docs/
-|   |── schematic.sv             # Multiplier Schematic
+|   |── schematic.svg            # Multiplier Schematic
 |
 │── package/                     # Packages and definitions used in the project
 │   │── mul_pkg.sv               # Definitions for the Multiplicator module
