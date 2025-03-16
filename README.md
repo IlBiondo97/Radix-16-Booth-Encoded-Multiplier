@@ -34,8 +34,8 @@ Radix-16-Booth-Encoded-Multiplier/
 |   |── pp_gen.sv                # Partial products generator module
 |
 |── sw/
-|   |──init_sim.py               # Python script to initialize simulation
-|   |──test_mul.do               # Do script to execute the simultation on Questasim simulator and save waves into vcd file
+|   |──init_sim.py               # Python script to set directory and initialize simulation
+|   |──test_mul.do               # Do script to execute the simulation on Questasim simulator and save waves into vcd file
 │
 │── tb/                          # SystemVerilog testbench code
 │   │── mul_tb.sv                # Testbench for the Multiplier
