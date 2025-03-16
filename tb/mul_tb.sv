@@ -14,9 +14,10 @@ module mul_tb;
   localparam int ClkCycle = 10;
 
   // Signals
-  logic clk, rst_n, start, done;
-  logic [WIDTH-1:0] multiplicand_int, multiplier_int, product_rounded_int;
-  logic [(WIDTH<<1)-1:0] product_int;
+  logic clk = 0;
+  logic rst_n, start, done;
+  logic signed [WIDTH-1:0] multiplicand_int, multiplier_int, product_rounded_int;
+  logic signed [(WIDTH<<1)-1:0] product_int;
 
   always begin
     clk = ~clk;
@@ -30,17 +31,16 @@ module mul_tb;
       #(ClkCycle * 5);
       $display("Reset deasserted");
       rst_n = 1'b1;  // deassert reset
-      start = 1'b0;
-
       for (int i = 0; i < 100; i++) begin
+        #(ClkCycle/10)
         multiplicand_int =
-            $urandom_range(0, (1 << WIDTH) - 1);  // random number between 0 and 2^WIDTH-1
+        $urandom_range(0, (1 << WIDTH) - 1);  // random number between 0 and 2^WIDTH-1
         multiplier_int =
-            $urandom_range(0, (1 << WIDTH) - 1);  // random number between 0 and 2^WIDTH-1
+        $urandom_range(0, (1 << WIDTH) - 1);  // random number between 0 and 2^WIDTH-1
         start = 1'b1;
         #ClkCycle;
         start = 1'b0;
-        #(ClkCycle * MULCYCLES);  // wait for the multiplication to complete
+        #(ClkCycle * (MULCYCLES+1));  // wait for the multiplication to complete
         assert (done == 1'b1)
           $display("Multiplication_[%d] done", i);  // check if the multiplication is done
         else $display("Multiplication_[%d] not done", i);
@@ -53,13 +53,15 @@ module mul_tb;
               multiplier_int
           );
         else
-          $fatal(
-              "Multiplication_[%d] incorrect - result = %d multiplicand = %d multiplier = %d",
+          $error(
+              "Multiplication_[%d] incorrect - result = %d correct result = %d multiplicand = %d multiplier = %d",
               i,
               product_int,
+              multiplicand_int*multiplier_int,
               multiplicand_int,
               multiplier_int
           );
+          #ClkCycle;
       end
     end else begin
       $display("Starting testbench - FPU Multiplier");
@@ -67,9 +69,8 @@ module mul_tb;
       #(ClkCycle * 5);
       $display("Reset deasserted");
       rst_n = 1'b1;  // deassert reset
-      start = 1'b0;
-
       for (int i = 0; i < 100; i++) begin
+        #(ClkCycle/10)
         multiplicand_int =
             $urandom_range(0, (1 << WIDTH) - 1);  // random number between 0 and 2^WIDTH-1
         multiplier_int =
@@ -77,7 +78,7 @@ module mul_tb;
         start = 1'b1;
         #ClkCycle;
         start = 1'b0;
-        #(ClkCycle * MULCYCLES);  // wait for the multiplication to complete
+        #(ClkCycle * (MULCYCLES+1));  // wait for the multiplication to complete
         assert (done == 1'b1)
           $display("Multiplication_[%d] done", i);  // check if the multiplication is done
         else $display("Multiplication_[%d] not done", i);
@@ -91,7 +92,7 @@ module mul_tb;
               multiplier_int
           );
         else
-          $fatal(
+          $error(
               "Multiplication_[%d] incorrect - result = %d result rounded by func = %d multiplicand = %d multiplier = %d",
               i,
               product_rounded_int,
@@ -99,6 +100,7 @@ module mul_tb;
               multiplicand_int,
               multiplier_int
           );
+          #ClkCycle;
       end
     end
   end

@@ -22,7 +22,6 @@ module counter #(
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       counter <= 'h0;
-      done <= 1'b0;
     end else begin
       if (start) begin
         counter <= 'h0;
@@ -31,6 +30,6 @@ module counter #(
       end
     end
   end
-  assign done = (counter == logic'(MULCYCLES) + 'b1) ? 1'b1 : 1'b0;
+  assign done = (int'(counter) == MULCYCLES+1) ? 1'b1 : 1'b0;
 endmodule
 

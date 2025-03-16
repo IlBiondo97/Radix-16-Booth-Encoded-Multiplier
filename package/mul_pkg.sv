@@ -6,14 +6,15 @@
  * @date 01/03/2025
  */
 
-localparam int FpuMultiplier = 0;  // Set to 1 if the multiplier is used in a FPU
+ package mul_pkg;
 
-localparam int WIDTH = 52;  // Width of the operands, change to adapt to your needs
+  localparam int FpuMultiplier = 0;  // Set to 1 if the multiplier is used in a FPU
 
-localparam int MULCYCLES = $ceil(WIDTH/4);  // Number of cycles needed to complete the multiplication
-localparam int COUNTERWIDTH = $clog2(MULCYCLES);  // Dimension of the counter
+  localparam int WIDTH = 52;  // Width of the operands, change to adapt to your needs
 
-package mul_pkg;
+  localparam int MULCYCLES = $ceil(WIDTH/4);  // Number of cycles needed to complete the multiplication
+
+  localparam int COUNTERWIDTH = $clog2(MULCYCLES)+1;  // Dimension of the counter
   typedef enum logic [3:0] {
     PP_0,
     PP_A,

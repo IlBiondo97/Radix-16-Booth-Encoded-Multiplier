@@ -1,6 +1,9 @@
 #Do not sync with github
-*.settings
+.settings
+.vscode
 *.project
 *.library_mapping.xml
 *.bkp
 *.drawio
+sim
+waves

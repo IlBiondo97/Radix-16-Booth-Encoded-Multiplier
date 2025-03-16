@@ -28,7 +28,7 @@ module pp_carry_shift_reg (
         pp <= 'h0;
         carry <= 'h0;
       end else begin
-        pp <= {pp_din[WIDTH-1], pp_din, pp[WIDTH-1:4]};
+        pp <= {pp_din[WIDTH+2], pp_din, pp[WIDTH-1:4]};
         carry <= {carry_din, 1'b0, carry[WIDTH-1:4]};
       end
     end

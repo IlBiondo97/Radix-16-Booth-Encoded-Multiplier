@@ -12,12 +12,12 @@ import mul_pkg::*;
     input logic clk,
     input logic rst_n,
     input logic load,
-    input logic [WIDTH-1:0] din,
+    input logic signed [WIDTH-1:0] din,
     output logic [3:0] dout,
     output logic last_bit
  );
 
-    reg [WIDTH-1:0] multiplier;
+    reg signed [WIDTH-1:0] multiplier;
     reg last_bit_reg;
 
     always_ff @(posedge clk or negedge rst_n) begin

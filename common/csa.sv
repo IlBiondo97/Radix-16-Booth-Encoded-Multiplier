@@ -18,7 +18,7 @@ module csa #(
 
   generate
     for (genvar i = 0; i < WIDTH + 3; i++) begin : g_FA_instantiation
-      FA fa_[i] (
+      FA fa (
           .a(multiplicand_in[i]),
           .b(pp_in[i]),
           .cin(carry_in[i]),
