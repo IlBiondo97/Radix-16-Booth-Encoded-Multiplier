@@ -29,7 +29,6 @@ Radix-16-Booth-Encoded-Multiplier/
 │── rtl/                         # SystemVerilog source code
 │   │── booth_encoder.sv         # Booth Radix-16 encoding module
 │   │── multiplicand_reg.sv      # Register for the Multiplicand operand
-|   |── multiplier_shift_reg.sv  # Shift register for the Multiplier operand
 |   |── pp_carry_shift_reg.sv    # Shift register for partial products and carries
 |   |── pp_gen.sv                # Partial products generator module
 |
