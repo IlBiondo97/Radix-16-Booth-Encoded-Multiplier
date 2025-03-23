@@ -25,7 +25,7 @@ module mul_datapath (
   logic signed [WIDTH+2:0] pp_gen_q, pp_shift_reg_d, carry_shift_reg_d;
   logic signed [WIDTH-1:0]
       multiplicand_reg_out_q, product_rounded_d;
-  logic [3:0] multiplier_shift_reg_out_q;
+  //logic [3:0] multiplier_shift_reg_out_q;
   logic last_bit_q, neg_sign_int;
   booth_sel_t pp_sel_int;
 
@@ -44,17 +44,17 @@ module mul_datapath (
       .pp_out(pp_gen_q)
   );
 
-  multiplier_shift_reg multiplier_shift_reg_instance (
+  /* multiplier_shift_reg multiplier_shift_reg_instance (
       .clk(clk),
       .rst_n(rst_n),
       .load(start),
       .din(multiplier_i),
       .dout(multiplier_shift_reg_out_q),
       .last_bit(last_bit_q)
-  );
+  ); */
 
   booth_encoder booth_encoder_instance (
-      .multiplier_in({multiplier_shift_reg_out_q, last_bit_q}),
+      .multiplier_in({pp_shift_reg_q[3:0], last_bit_q}),
       .pp_sel(pp_sel_int),
       .neg(neg_sign_int)
   );
@@ -65,8 +65,10 @@ module mul_datapath (
       .load(start),
       .pp_din(pp_shift_reg_d),
       .carry_din(carry_shift_reg_d),
+      .multiplier_in(multiplier_i),
       .pp_dout(pp_shift_reg_q),
-      .carry_dout(carry_shift_reg_q)
+      .carry_dout(carry_shift_reg_q),
+      .last_bit(last_bit_q)
   );
 
   csa #(
