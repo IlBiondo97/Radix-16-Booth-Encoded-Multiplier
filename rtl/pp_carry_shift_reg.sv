@@ -18,7 +18,7 @@ module pp_carry_shift_reg (
     output logic [(WIDTH<<1)-1:0] carry_dout,
     output logic last_bit
 );
-  reg [(WIDTH<<1)-1:0] pp;  //TODO: Unify pp and multiplier registers to optimize area
+  reg [(WIDTH<<1)-1:0] pp;
   reg [(WIDTH<<1)-1:0] carry;
   reg last_bit_reg;
 
