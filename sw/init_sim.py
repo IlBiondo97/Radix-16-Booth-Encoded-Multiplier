@@ -16,4 +16,4 @@ os.makedirs(path, exist_ok=True)  # Create sim directory for the simulation file
 print("Starting Questasim")
 
 os.chdir("../sim")
-os.system("vsim -do ../sw/test_mul.do")  # Start Questasim simulator using a DO script file
+os.system("vsim -c -do ../sw/test_mul.do")  # Start Questasim simulator using a DO script file
