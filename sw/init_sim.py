@@ -1,19 +1,27 @@
 import os
 
-print("Creating Directory for simulation")
 
-directory = "waves"
-parent_dir = "../"
+def main():
+    print("Creating Directory for simulation")
 
-path = os.path.join(parent_dir, directory)
-os.makedirs(path, exist_ok=True)  # Create waves directory for the vcd file
+    directory = "waves"
+    parent_dir = "../"
 
-directory = "sim"
+    path = os.path.join(parent_dir, directory)
+    os.makedirs(path, exist_ok=True)  # Create waves directory for the vcd file
 
-path = os.path.join(parent_dir, directory)
-os.makedirs(path, exist_ok=True)  # Create sim directory for the simulation files
+    directory = "sim"
 
-print("Starting Questasim")
+    path = os.path.join(parent_dir, directory)
+    os.makedirs(path, exist_ok=True)  # Create sim directory for the simulation files
 
-os.chdir("../sim")
-os.system("vsim -c -do ../sw/test_mul.do")  # Start Questasim simulator using a DO script file
+    print("Starting Questasim")
+
+    os.chdir("../sim")
+    os.system(
+        "vsim -c -do ../sw/test_mul.do"
+    )  # Start Questasim simulator using a DO script file
+
+
+if __name__ == "__main__":
+    main()
